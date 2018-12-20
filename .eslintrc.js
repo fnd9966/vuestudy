@@ -15,6 +15,8 @@ module.exports = {
     'no-empty': 'off',
     'no-new-object': 'off',
     'one-var': 'off',
+    'one-var-declaration-per-line': 'off',
+    'no-unused-expressions': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   },

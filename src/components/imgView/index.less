@@ -1,0 +1,23 @@
+/** 通用 */
+@borderColor: #405983;
+@playHeight: 75px;
+.isSelect(@st) { user-select:@st; -ms-user-select:@st; -moz-user-select:@st; -webkit-user-select:@st; }
+.pmNone { padding: 0; margin: 0; }
+.borderBox { box-sizing: border-box; -ms-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; }
+
+/** 样式 */
+.imgView {
+  font-family: Arial, Helvetica, sans-serif; height: 100%; width: 100%; background-color: #fff;
+  .borderBox;
+  .pmNone;
+  * { .pmNone }
+  div { .borderBox }
+  span { .isSelect(none);}
+  img[src=''] {display: none;}
+  .imgViewBox {
+    height: calc(~'100% - @{playHeight}');
+  }
+  .playViewBox {
+    height: @playHeight;
+  }
+}

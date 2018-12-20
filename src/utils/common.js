@@ -344,6 +344,9 @@ const sort = (v, { order = 'asc', by }) => {
   return v
 }
 
+// 空函数
+const noop = function () {}
+
 export default {
   isString,
   isArray,
@@ -388,5 +391,6 @@ export default {
   clearImmediate,
   encode,
   decode,
-  sort
+  sort,
+  noop
 }

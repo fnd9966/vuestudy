@@ -7,6 +7,7 @@ import router from './router/router'
 import store from './store/store'
 import axios from './plugins/axios/index'
 import apiUrl from './api/axios'
+import './components/tooltip/index'
 
 Vue.use(axios, apiUrl, {
   baseUrl: 'localhost:8080/'

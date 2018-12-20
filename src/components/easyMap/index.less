@@ -1,0 +1,83 @@
+/** 通用 */
+@borderColor: #405983;
+@soltMargin: 10px;
+.isSelect(@st) { user-select:@st; -ms-user-select:@st; -moz-user-select:@st; -webkit-user-select:@st; }
+.pmNone { padding: 0; margin: 0; }
+.borderBox { box-sizing: border-box; -ms-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; }
+
+/** 样式 */
+.easyMap {
+  font-family: Arial, Helvetica, sans-serif; height: 100%; width: 100%; overflow: hidden; position: relative;
+  .borderBox;
+  .pmNone;
+  * { .pmNone }
+  div { .borderBox }
+  span,canvas,img { .isSelect(none);}
+  img[src=''] {display: none;}
+  .wrapBox {
+    position: relative;
+    .baseMap { height: 100%; width: 100%; }
+    .drawCanvas { height: 100%; width: 100%; position: absolute; top: 0; left: 0; z-index: 1;}
+    .mapPoint {
+      position: absolute; z-index: 2;
+      img { 
+        cursor: pointer; position: relative; vertical-align: top;
+        transform-origin: center center;
+        -ms-transform-origin: center center;
+        -webkit-transform-origin: center center;
+        -moz-transform-origin: center center;
+        -o-transform-origin: center center;
+        &:hover {
+          transform: scale(1.4)
+        }
+      }
+    }
+    .tooltipBox {
+      position: absolute; z-index: 3; color: #fff; font-size: 14px;
+      .tooltipContain {
+        position: absolute;
+        div { white-space: nowrap; text-align: left;}
+        .tooltipLine { padding: 1px 4px;}
+        .defaultContainWrap {
+          position: relative;
+          .defaultContain {
+            background: rgba(5, 73, 148, .6); padding: 5px; border: 1px solid #5486b8; outline: 1px solid rgba(5, 73, 148, .6); 
+          }
+          .triangle {
+            height: 0px; width: 0px; border-left: 6px solid transparent; border-right: 6px solid transparent; position: relative; left: 50%; margin-left: -6px;
+          }
+        }
+        &.d_top {
+          bottom: 10px; 
+          .vD {
+            position: relative; left: -50%;
+            .triangle {
+              border-top-width: 10px;
+              border-top-style: solid;
+              border-top-color: rgba(5, 73, 148, .6);
+            }
+          }
+        }
+        &.d_bottom {
+          top: 10px;
+          .vD {
+            position: relative; left: -50%; top: 10px;
+            .triangle {
+              border-bottom-width: 10px;
+              border-bottom-style: solid;
+              border-bottom-color: rgba(5, 73, 148, .6);
+              position: absolute; top: -10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .absBlock {
+    position: absolute;
+    &.leftTop { top: @soltMargin; left: @soltMargin; }
+    &.topRight { top: @soltMargin; right: @soltMargin; }
+    &.bottomLeft { bottom: @soltMargin; left: @soltMargin; }
+    &.bottomRight { bottom: @soltMargin; right: @soltMargin; }
+  }
+}

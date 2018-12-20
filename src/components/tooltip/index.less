@@ -1,0 +1,50 @@
+@BGC: rgba(0, 0, 0, .75);
+
+.tooltip-target-atk {
+  position: fixed;
+  z-index: 99999;
+  top: -99999px;
+  left: -99999px;
+  .tooltip-target-text {
+    color: #fff;
+    font-size: 14px;
+    background: @BGC;
+    padding: 0px 10px;
+    border-radius: 3px;
+  }
+  .tooltip-target-arrow {
+    position: absolute;
+    border-style: solid;
+    border-color: transparent !important;
+    height: 0;
+    width: 0;
+    &.top {
+      border-width: 6px 5px 0 5px;
+      border-top-color: @BGC !important;
+      bottom: -6px;
+      left: 50%;
+      margin-left: -5px;
+    }
+    &.bottom {
+      border-width: 0 5px 6px 5px;
+      border-bottom-color: @BGC !important;
+      top: -6px;
+      left: 50%;
+      margin-left: -5px;
+    }
+    &.left {
+      border-width: 5px 0 5px 6px;
+      border-left-color: @BGC !important;
+      top: 50%;
+      right: -6px;
+      margin-top: -5px;
+    }
+    &.right {
+      border-width: 5px 6px 5px 0;
+      border-right-color: @BGC !important;
+      top: 50%;
+      left: -6px;
+      margin-top: -5px;
+    }
+  }
+}
