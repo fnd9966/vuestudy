@@ -12,7 +12,7 @@
 <script>
 import ImgView from '../imgView/index.vue'
 
-const radar = 'http://47.95.1.229:8069/webapi/api/v2/images/realtime-custom?category=radar/huanan&name=华南雷达拼图&time=[2018-12-11T04:59:24,2018-12-13T08:59:24]'
+// const radar = 'http://47.95.1.229:8069/webapi/api/v2/images/realtime-custom?category=radar/huanan&name=华南雷达拼图&time=[2018-12-11T04:59:24,2018-12-13T08:59:24]'
 
 export default {
   name: 'tableTest',
@@ -37,9 +37,12 @@ export default {
     }
   },
   mounted () {
-    this.$ajax.get(radar).then(ret => {
-      let data = ret.data
-      this.d = data
+    this.$ajax.radar().then(ret => {
+      // console.log(ret)
+      // let data = ret.data
+      // this.d = data
+      this.d = ret
+      // console.log(ret.length)
       this.int++
     }
     ).catch(ret => console.log(ret))

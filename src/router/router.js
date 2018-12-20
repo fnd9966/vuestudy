@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '/test',
       component: resolve =>
-        require(['@/components/dragable/index.vue'], resolve)
+        require(['@/components/demo/page_img.vue'], resolve)
     },
     {
       path: '/mock',
