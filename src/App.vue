@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
-body, html { height: 100%; width: 100%; padding: 0; margin: 0;}
+/* body, html { height: 100%; width: 100%; padding: 0; margin: 0;}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,5 +28,5 @@ body, html { height: 100%; width: 100%; padding: 0; margin: 0;}
   height: 100%;
   width: 100%;
   padding-top: 40px; margin: 0; box-sizing: border-box; -ms-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-}
+} */
 </style>

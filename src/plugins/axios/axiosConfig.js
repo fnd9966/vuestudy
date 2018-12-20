@@ -3,7 +3,7 @@ import Qs from 'qs'
 export default (axiosConfig, conf, url) => {
   // 默认为 测试环境
   let { baseUrl } = axiosConfig
-  let { method = 'get', data = {}, headers = {}, dataType = 'json' } = conf
+  let { method = 'get', data = {}, headers = {}, dataType = 'json', params = {} } = conf
   // 正式环境
   if (process.env.PATH_ENV === 'production') {
     baseUrl = axiosConfig.prodUrl || baseUrl
@@ -23,7 +23,7 @@ export default (axiosConfig, conf, url) => {
     // headers: { 'Content-Type': 'application/json; charset=UTF-8' }
     headers,
     data: data,
-    params: data,
+    params: params,
     responseType: dataType
   }
 

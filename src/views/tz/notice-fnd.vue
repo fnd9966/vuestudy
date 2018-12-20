@@ -84,15 +84,16 @@ export default {
       }
     },
     getMessage: function (obj) {
+      console.log(obj)
       let params = obj || {}
       let _this = this
       params.pagesize = 10000
-      this.$ajax.get('http://www.erhai.gov.cn:3086/WebApi/api/v2/DLEHJC/App/dlehjc_select_ss_mobile_news_notice?sign=1', {
+      this.$ajax.tz({
         params: params
       })
         .then(function (response) {
           // console.log(response)
-          let data = response.data.data.rows
+          let data = response.data.rows
           if (T.isArray(data) && data.length > 0) {
             _this.listData = data
           } else {

@@ -125,14 +125,14 @@ export default {
     /* 点击事件 */
     flClick: function (data) {
       let _this = this
-      this.$ajax.get('http://www.erhai.gov.cn:3086/WebApi/api/v2/DLEHJC/App/dlehjc_select_ss_mobile_news_notice?sign=1', {
+      this.$ajax.tz({
         params: {
           sign: 1,
           id: data.id
         }
       })
         .then(function (result) {
-          let file = result.data.data.rows
+          let file = result.data.rows
           if (file.length > 0) {
             _this.detailMassage = file[0]
             _this.files = JSON.parse(file[0].upload_path)
