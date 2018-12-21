@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Menu from '@/components/CanvasBg'
+import Menu from '@/components/CanvasDemo/CanvasBg'
 
 Vue.use(Router)
 

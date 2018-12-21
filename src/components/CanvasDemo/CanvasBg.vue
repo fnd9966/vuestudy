@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import Stars from '../utils/canvas/Star'
-import Moon from '../utils/canvas/Moon'
-import Meteor from '../utils/canvas/Meteor'
+import Stars from '../../utils/canvas/Star'
+import Moon from '../../utils/canvas/Moon'
+import Meteor from '../../utils/canvas/Meteor'
 export default {
   name: 'menuCanvas',
   props: {
@@ -81,10 +81,7 @@ export default {
       } else {
         // console.log('back')
         // id = requestAnimationFrame(frame)
-        // meteorGenerator()
-        sId = setTimeout(() => {
-          meteorGenerator()
-        }, Math.random() * 2000)
+        meteorGenerator()
         frame()
       }
     })
@@ -98,72 +95,80 @@ export default {
 }
 </script>
 
-<style scoped>
+<style type="text/less" lang="less" scoped>
+@baseUrl: '../../assets/images/';
 #menu {
   height: 100%;
   overflow: hidden;
-  position: relative
-}
-.canvas {
-  position: fixed;
-  z-index: -1;
-}
-.logo-bg {
-  width: 800px;
-  height: 200px;
-  position: absolute;
-  z-index: 10000;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: url('../assets/images/top_logo.png') no-repeat;
-}
-.nav {
-  width: 200px;
-  height: auto;
-  position: absolute;
-  z-index: 10000;
-  top: 350px;
-  left: 50%;
-  margin-left: -100px;
-}
-.gv {
-  text-decoration: none;
-  background: url('../assets/images/nav_gv.png') repeat 0px 0px;
-  width: 130px;
-  height: 43px;
-  display: block;
-  text-align: center;
-  line-height: 43px;
-  cursor: pointer;
-  float: left;
-  margin: 10px 2px 10px 2px;
-  font: 18px/43px 'microsoft yahei';
-  color: #066197;
-}
-a.gv:hover {
-  background: url('../assets/images/nav_gv.png') repeat 0px -43px;
-  color:#1d7eb8;
-  box-shadow: 0 0 6px #1d7eb8;
-  transition-duration: 0.5s;
-}
-.city {
-  width: 100%;
-  height: 170px;
-  position: fixed;
-  bottom: 0px;
-  z-index: 100;
-  background: url('../assets/images/city.png') no-repeat;
-  background-size: cover;
-}
-.moon {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  left: 100px;
-  top: 100px;
-  background: url('../assets/images/moon.png') no-repeat;
-  background-size: cover;
+  position: relative;
+
+  .canvas {
+    position: fixed;
+    z-index: -1;
+  }
+
+  .logo-bg {
+    width: 800px;
+    height: 200px;
+    position: absolute;
+    z-index: 10000;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url('@{baseUrl}top_logo.png') no-repeat;
+  }
+
+  .nav {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    z-index: 10000;
+    top: 350px;
+    left: 50%;
+    margin-left: -100px;
+
+    .gv {
+      text-decoration: none;
+      background: url('@{baseUrl}nav_gv.png') repeat 0px 0px;
+      width: 130px;
+      height: 43px;
+      display: block;
+      text-align: center;
+      line-height: 43px;
+      cursor: pointer;
+      float: left;
+      margin: 10px 2px 10px 2px;
+      font: 18px/43px 'microsoft yahei';
+      color: #066197;
+
+      &:hover {
+        background: url('@{baseUrl}nav_gv.png') repeat 0px -43px;
+        color:#1d7eb8;
+        box-shadow: 0 0 6px #1d7eb8;
+        transition-duration: 0.5s;
+      }
+    }
+  }
+
+  .city {
+    width: 100%;
+    height: 170px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 100;
+    background: url('@{baseUrl}city.png') no-repeat;
+    background-size: cover;
+  }
+
+  .moon {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    background: url('@{baseUrl}moon.png') no-repeat;
+    background-size: cover;
+  }
 }
 .fade-out-enter-active, .fade-out-leave-active {
   transition: all .5s
