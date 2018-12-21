@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Menu from '@/components/CanvasBg'
 
 Vue.use(Router)
 
@@ -8,6 +9,10 @@ export default new Router({
     {
       path: '/',
       component: resolve => require(['@/views/tz/notice-fnd.vue'], resolve)
+    },
+    {
+      path: '/canvasbg',
+      component: Menu
     },
     {
       path: '/test',

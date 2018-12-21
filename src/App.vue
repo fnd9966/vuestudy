@@ -19,7 +19,7 @@ export default {
 
 <style>
 body, html { height: 100%; width: 100%; padding: 0; margin: 0;}
-#app {
+/* #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,5 +28,9 @@ body, html { height: 100%; width: 100%; padding: 0; margin: 0;}
   height: 100%;
   width: 100%;
   padding-top: 40px; margin: 0; box-sizing: border-box; -ms-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+} */
+#app {
+  width: 100%;
+  height: 100%;
 }
 </style>
