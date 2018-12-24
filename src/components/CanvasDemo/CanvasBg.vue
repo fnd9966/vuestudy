@@ -26,71 +26,147 @@ export default {
   },
   data () {
     return {
-      login: false
+      login: false,
+      c: {
+        w: window.innerWidth,
+        h: window.innerHeight,
+        sId: null,
+        id: null
+      },
+      timer: false,
+      count: 0,
+      moon: null,
+      stars: null,
+      meteors: []
     }
   },
   mounted () {
-    let canvas = this.$refs.canvas,
-      ctx = canvas.getContext('2d'),
-      width = window.innerWidth,
-      height = window.innerHeight,
-      moon = new Moon(ctx, width, height),
-      stars = new Stars(ctx, width, height, 200),
-      meteors = [],
-      count = 0
-    canvas.width = width
-    canvas.height = height
-    var sId
-    const meteorGenerator = () => {
-      let x = Math.random() * width + 800
-      console.log(111)
-      meteors.push(new Meteor(ctx, x, height))
-      // 每隔随机时间，生成新流星
-      sId = setTimeout(() => {
-        meteorGenerator()
-      }, Math.random() * 2000)
-    }
-    var id
-    const frame = () => {
-      count++
-      count % 10 === 0 && stars.blink()
-      moon.draw()
-      stars.draw()
-      // meteorGenerator()
-      // console.log(11)
-
-      meteors.forEach((meteor, index, arr) => {
-        // 如果流星离开视野之内，销毁流星实例，回收内存
-        if (meteor.flow()) {
-          meteor.draw()
-        } else {
-          arr.splice(index, 1)
-        }
-      })
-      id = requestAnimationFrame(frame)
-    }
-    meteorGenerator()
-    // console.log(222)
-    frame()
-    // id = requestAnimationFrame(frame)
+    // this.draw()
+    this.$nextTick(function () {
+      window.addEventListener('resize', this.initEvent)
+    })
     window.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         // console.log('pause')
-        window.cancelAnimationFrame(id)
-        clearTimeout(sId)
+        window.cancelAnimationFrame(this.c.id)
+        clearTimeout(this.c.sId)
       } else {
         // console.log('back')
         // id = requestAnimationFrame(frame)
-        meteorGenerator()
-        frame()
+        this.meteorGenerator()
+        this.frame()
       }
     })
   },
   components: {
-
+  },
+  watch: {
+  },
+  beforeDestroy: function () {
+    clearInterval(this.c.sId)
+    window.removeEventListener('resize', this.initEvent)
   },
   methods: {
+    initEvent: function () {
+      this.setSize()
+      this.draw()
+      // console.log('bianhua')
+    },
+    setSize: function () {
+      let canvas = this.$refs.canvas, w = window.innerWidth, h = window.innerHeight
+      // console.log(w)
+      if (canvas) {
+        this.c.w = w
+        this.c.h = h
+      }
+    },
+    draw: function () {
+      let { w, h } = this.c
+      let canvas = this.$refs.canvas
+      if (!canvas) return
+      // console.log(w)
+      canvas.width = w
+      canvas.height = h
+      let ctx = canvas.getContext('2d')
+      this.moon = new Moon(ctx, this.c.w, this.c.h)
+      this.stars = new Stars(ctx, this.c.w, this.c.h, 200)
+      // var sId
+      // const meteorGenerator = () => {
+      //   let x = Math.random() * this.width + 800
+      //   // console.log(111)
+      //   meteors.push(new Meteor(ctx, x, this.height))
+      //   // 每隔随机时间，生成新流星
+      //   sId = setTimeout(() => {
+      //     meteorGenerator()
+      //   }, Math.random() * 2000)
+      // }
+      // var id
+      // const frame = () => {
+      //   let count = this.count
+      //   count++
+      //   count % 10 === 0 && stars.blink()
+      //   moon.draw()
+      //   stars.draw()
+      //   // meteorGenerator()
+      //   // console.log(11)
 
+      //   meteors.forEach((meteor, index, arr) => {
+      //     // 如果流星离开视野之内，销毁流星实例，回收内存
+      //     if (meteor.flow()) {
+      //       meteor.draw()
+      //     } else {
+      //       arr.splice(index, 1)
+      //     }
+      //   })
+      //   id = requestAnimationFrame(frame)
+      // }
+      console.log(this.c.id)
+      window.cancelAnimationFrame(this.c.id)
+      clearTimeout(this.c.sId)
+      this.meteorGenerator()
+      // console.log(222)
+      this.frame()
+      // id = requestAnimationFrame(frame)
+    },
+    meteorGenerator: function () {
+      let canvas = this.$refs.canvas
+      let ctx = canvas.getContext('2d')
+      let x = Math.random() * this.c.w + 800
+      // console.log(111)
+      this.meteors.push(new Meteor(ctx, x, this.c.h))
+      let that = this
+      // 每隔随机时间，生成新流星
+      this.c.sId = setTimeout(() => {
+        that.meteorGenerator()
+      }, Math.random() * 2000)
+    },
+    frame: function () {
+      // let count = this.count
+      // let moon = this.moon
+      // let stars = this.stars
+      // let meteors = this.meteors
+      // let id = this.c.id
+      let that = this
+      // console.log(this.count)
+      this.count++
+      this.count % 10 === 0 && this.stars.blink()
+      // console.log('重新绘制')
+      this.moon.draw()
+      this.stars.draw()
+      // meteorGenerator()
+      // console.log(11)
+
+      this.meteors.forEach((meteor, index, arr) => {
+        // 如果流星离开视野之内，销毁流星实例，回收内存
+        if (meteor.flow()) {
+          meteor.draw()
+          // console.log('star')
+        } else {
+          arr.splice(index, 1)
+        }
+      })
+      that.c.id = requestAnimationFrame(that.frame)
+    }
   }
 }
 </script>

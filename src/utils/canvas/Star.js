@@ -34,6 +34,7 @@ export default class Stars {
   }
   // 星星没隔10帧闪一下
   blink () {
+    // console.log(1111)
     // map方法 找到合适的星星放进新数组 匹配
     this.stars = this.stars.map(star => {
       let sign = Math.random() > 0.5 ? 1 : -1
