@@ -43,6 +43,7 @@ export default {
   mounted () {
     // this.draw()
     this.$nextTick(function () {
+      this.initEvent()
       window.addEventListener('resize', this.initEvent)
     })
     window.addEventListener('visibilitychange', () => {
